@@ -9,3 +9,17 @@
 DROP TABLE IF EXISTS preference, rider_preference;
 
 -- Add here your sql statements to create the tables "preference" and "rider_preference"
+
+CREATE TABLE rider_preference (
+    rider_id LONG PRIMARY KEY NOT NULL,
+    vehicle_class VARCHAR(255),
+    area VARCHAR(255)
+);
+
+CREATE TABLE preference (
+    id LONG PRIMARY KEY AUTO_INCREMENT,
+    rider_id LONG NOT NULL,
+    pref_key VARCHAR(255) NOT NULL,
+    pref_value VARCHAR(255) NOT NULL,
+    FOREIGN KEY (rider_id) REFERENCES rider_preference(rider_id)
+);

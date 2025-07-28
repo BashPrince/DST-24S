@@ -4,6 +4,27 @@
                  xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence/orm http://xmlns.jcp.org/xml/ns/persistence/orm_2_2.xsd"
                  version="2.2">
 
-    <!-- TODO -->
+    <entity class="dst.ass1.jpa.model.impl.Trip" name="Trip">
+        <named-query name="findTripsByState">
+            <query>SELECT t FROM Trip t WHERE t.state = :state</query>
+        </named-query>
+        <attributes>
+            <id name="id">
+                <generated-value/>
+            </id>
+            <many-to-one name="rider" target-entity="dst.ass1.jpa.model.impl.Rider">
+            </many-to-one>
+            <many-to-one name="pickup" optional="false" target-entity="dst.ass1.jpa.model.impl.Location">
+            </many-to-one>
+            <many-to-one name="destination" optional="false" target-entity="dst.ass1.jpa.model.impl.Location">
+            </many-to-one>
+            <one-to-one name="tripInfo" mapped-by="trip" target-entity="dst.ass1.jpa.model.impl.TripInfo">
+            </one-to-one>
+            <one-to-one name="match" mapped-by="trip" target-entity="dst.ass1.jpa.model.impl.Match">
+            </one-to-one>
+            <many-to-many name="stops" target-entity="dst.ass1.jpa.model.impl.Location">
+            </many-to-many>
+        </attributes>
+    </entity>
 
 </entity-mappings>
